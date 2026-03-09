@@ -1,11 +1,10 @@
 package com.friendlysmp.core.storage;
 
 import com.friendlysmp.core.platform.Schedulers;
-import com.friendlysmp.core.storage.SqlManager;
-import com.friendlysmp.core.storage.WitherSoundDao;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.sql.DataSource;
 import java.time.Duration;
 import java.util.Map;
 import java.util.UUID;
@@ -19,11 +18,9 @@ public final class PlayerSettingsStore {
     private final SqlManager sql;
     private final WitherSoundDao witherDao;
 
-    // cache: uuid -> muted
     private final Map<UUID, Boolean> muteWitherDeath = new ConcurrentHashMap<>();
-
-    // debounce save per player
     private final Map<UUID, Boolean> saveQueued = new ConcurrentHashMap<>();
+    private final Map<UUID, Boolean> loading = new ConcurrentHashMap<>();
 
     public PlayerSettingsStore(JavaPlugin plugin, Schedulers schedulers) {
         this.plugin = plugin;
@@ -32,7 +29,6 @@ public final class PlayerSettingsStore {
         this.sql = new SqlManager(plugin);
         this.witherDao = new WitherSoundDao(sql.dataSource());
 
-        // init table sync (fast + avoids races)
         try {
             witherDao.init();
         } catch (Exception e) {
@@ -41,22 +37,35 @@ public final class PlayerSettingsStore {
         }
     }
 
-    /** Fast read for hot paths (packet listener). If not loaded yet, returns false (sound ON). */
+    public DataSource dataSource() {
+        return sql.dataSource();
+    }
+
     public boolean isWitherDeathMuted(UUID uuid) {
         return muteWitherDeath.getOrDefault(uuid, false);
     }
 
-    /** Load this player from DB async into cache */
     public void ensureLoadedAsync(UUID uuid) {
         if (muteWitherDeath.containsKey(uuid)) return;
+        if (loading.putIfAbsent(uuid, true) != null) return;
 
         schedulers.async(() -> {
             try {
                 boolean muted = witherDao.load(uuid);
-                // set even if absent (we want the loaded truth)
-                muteWitherDeath.put(uuid, muted);
+
+                Boolean before = muteWitherDeath.get(uuid);
+                muteWitherDeath.putIfAbsent(uuid, muted);
+                boolean after = muteWitherDeath.getOrDefault(uuid, false);
+
+                plugin.getLogger().info("[WitherStore] LOADED " + uuid
+                        + " dbMuted=" + muted
+                        + " cacheBefore=" + before
+                        + " cacheAfter=" + after);
+
             } catch (Exception e) {
                 plugin.getLogger().warning("Failed to load wither sound setting for " + uuid + ": " + e.getMessage());
+            } finally {
+                loading.remove(uuid);
             }
         });
     }
@@ -75,16 +84,13 @@ public final class PlayerSettingsStore {
 
     private void queueSave(UUID uuid) {
         if (saveQueued.putIfAbsent(uuid, true) != null) return;
-
-        // debounce so spam toggles don't spam DB
-        schedulers.asyncLater(Duration.ofMillis(500), () -> saveNowAsync(uuid));
+        schedulers.asyncLater(Duration.ofMillis(300), () -> saveNowAsync(uuid));
     }
 
     private void saveNowAsync(UUID uuid) {
         try {
             boolean muted = isWitherDeathMuted(uuid);
             witherDao.upsert(uuid, muted);
-            // plugin.getLogger().info("[WitherSound] Saved " + uuid + " muted=" + muted); // optional debug
         } catch (Exception e) {
             plugin.getLogger().warning("Failed to save wither sound setting for " + uuid + ": " + e.getMessage());
         } finally {
@@ -93,6 +99,16 @@ public final class PlayerSettingsStore {
     }
 
     public void shutdown() {
+        for (UUID uuid : saveQueued.keySet()) {
+            try {
+                boolean muted = isWitherDeathMuted(uuid);
+                witherDao.upsert(uuid, muted);
+            } catch (Exception e) {
+                plugin.getLogger().warning("Failed to flush wither sound setting for " + uuid + ": " + e.getMessage());
+            }
+        }
+        saveQueued.clear();
+
         sql.shutdown();
     }
 }

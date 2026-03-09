@@ -22,31 +22,30 @@ public final class WitherSoundCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage("Players only.");
             return true;
         }
-        
 
         store.ensureLoadedAsync(player.getUniqueId());
 
         if (args.length == 0 || args[0].equalsIgnoreCase("toggle")) {
-            boolean now = store.toggleWitherDeathMuted(player.getUniqueId());
-            player.sendMessage("Wither death sound: " + (now ? "§cMUTED" : "§aON"));
+            boolean nowMuted = store.toggleWitherDeathMuted(player.getUniqueId());
+            player.sendMessage("Wither spawn sound: " + (nowMuted ? "§cMUTED" : "§aON"));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("on")) {
             store.setWitherDeathMuted(player.getUniqueId(), false);
-            player.sendMessage("Wither death sound: §aON");
+            player.sendMessage("Wither spawn sound: §aON");
             return true;
         }
 
         if (args[0].equalsIgnoreCase("off")) {
             store.setWitherDeathMuted(player.getUniqueId(), true);
-            player.sendMessage("Wither death sound: §cMUTED");
+            player.sendMessage("Wither spawn sound: §cMUTED");
             return true;
         }
 
         if (args[0].equalsIgnoreCase("status")) {
             boolean muted = store.isWitherDeathMuted(player.getUniqueId());
-            player.sendMessage("Wither death sound: " + (muted ? "§cMUTED" : "§aON"));
+            player.sendMessage("Wither spawn sound: " + (muted ? "§cMUTED" : "§aON"));
             return true;
         }
 

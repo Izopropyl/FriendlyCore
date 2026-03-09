@@ -5,3 +5,13 @@ storage:
 features:
   wither-sound:
     enabled: true
+    debug: false
+  tokens:
+    enabled: true
+
+tokens:
+  claim-until-day: 7
+  excluded-worlds: []
+  ranks:
+    permission.vip: 1
+    permission.legend: 2

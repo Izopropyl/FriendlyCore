@@ -1,9 +1,14 @@
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\command\FriendlyCoreCommand.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\feature\Feature.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\feature\FeatureManager.java
-D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\withersound\WitherDeathSoundPacketListener.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenCommand.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenDao.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenFeature.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenService.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\withersound\WitherEffectPacketListener.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\withersound\WitherSoundCommand.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\withersound\WitherSoundFeature.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\withersound\WitherSoundJoinListener.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\FriendlyCorePlugin.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\placeholder\FriendlyCoreExpansion.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\placeholder\PlaceholderProvider.java

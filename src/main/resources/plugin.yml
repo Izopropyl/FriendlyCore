@@ -13,3 +13,12 @@ commands:
   withersound:
     description: Toggle the Wither death sound for yourself.
     usage: /withersound [toggle|on|off|status]
+  token:
+    description: Token command
+    usage: /token
+
+permissions:
+  friendlycore.admin:
+    default: op
+  friendlycore.tokens.admin:
+    default: opggle|on|off|status]

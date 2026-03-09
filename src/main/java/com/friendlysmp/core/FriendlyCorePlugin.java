@@ -2,6 +2,7 @@ package com.friendlysmp.core;
 
 import com.friendlysmp.core.command.FriendlyCoreCommand;
 import com.friendlysmp.core.feature.FeatureManager;
+import com.friendlysmp.core.features.tokens.TokenFeature;
 import com.friendlysmp.core.features.withersound.WitherSoundFeature;
 import com.friendlysmp.core.placeholder.PlaceholderProvider;
 import com.friendlysmp.core.placeholder.PlaceholderRegistrar;
@@ -21,10 +22,8 @@ public final class FriendlyCorePlugin extends JavaPlugin {
 
         this.schedulers = new Schedulers(this);
 
-        // SQL-only store (SQLite)
         this.playerSettings = new PlayerSettingsStore(this, schedulers);
 
-        // Require PacketEvents (name can vary by build/case)
         var pm = Bukkit.getPluginManager();
 
         var pe = pm.getPlugin("PacketEvents");
@@ -50,15 +49,13 @@ public final class FriendlyCorePlugin extends JavaPlugin {
 
         this.featureManager = new FeatureManager(this);
         featureManager.register(new WitherSoundFeature(this, playerSettings));
+        featureManager.register(new TokenFeature(this, playerSettings));
 
-        // Register /friendlycore
         var cmd = getCommand("friendlycore");
         if (cmd != null) cmd.setExecutor(new FriendlyCoreCommand(this));
 
-        // Enable features based on config
         featureManager.enableConfigured();
 
-        // papi
         var expansion = PlaceholderRegistrar.register(this);
         if (expansion != null) {
             for (var feature : featureManager.getFeatures()) {
