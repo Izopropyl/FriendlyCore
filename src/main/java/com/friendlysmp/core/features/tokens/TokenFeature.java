@@ -64,6 +64,7 @@ public final class TokenFeature implements Feature, Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        plugin.getLogger().info("[TOKENS] TokenFeature saw join for " + player.getName());
         service.handleMonthlyJoin(player);
     }
 }

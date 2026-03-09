@@ -1,3 +1,4 @@
+com\friendlysmp\core\features\tokens\TokenService$GiveResult.class
 com\friendlysmp\core\storage\PlayerSettingsStore.class
 com\friendlysmp\core\features\withersound\WitherSoundFeature.class
 com\friendlysmp\core\storage\SqlWitherSoundStore.class

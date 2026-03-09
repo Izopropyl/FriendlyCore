@@ -1,6 +1,8 @@
 package com.friendlysmp.core.features.tokens;
 
 import com.friendlysmp.core.FriendlyCorePlugin;
+import com.friendlysmp.core.features.tokens.TokenService.GiveResult;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -119,13 +121,22 @@ public final class TokenCommand implements TabExecutor {
             }
         }
 
-        boolean success = service.handleAdminGive(target, amount);
-        if (!success) {
-            sender.sendMessage("§cCould not give tokens right now. The player may be in an excluded world or have no inventory space.");
+        TokenService.GiveResult result = service.handleAdminGive(target, amount);
+
+        if (result == TokenService.GiveResult.GIVEN_NOW) {
+            sender.sendMessage("§aGave " + amount + " Shop Token(s) to " + target.getName() + ".");
             return true;
         }
 
-        sender.sendMessage("§aGave " + amount + " Shop Token(s) to " + target.getName() + ".");
+        if (result == TokenService.GiveResult.STORED_FOR_CLAIM) {
+            sender.sendMessage("§e" + target.getName() + " could not receive the token(s) right now, so they were stored for /token claim.");
+            if (target.isOnline()) {
+                target.sendMessage("§eYou received " + amount + " token(s), but they were stored for claim because your inventory was full or you were in an excluded world. /token claim");
+            }
+            return true;
+        }
+
+        sender.sendMessage("§cFailed to give tokens to " + target.getName() + ".");
         return true;
     }
 

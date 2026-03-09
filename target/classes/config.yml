@@ -13,5 +13,9 @@ tokens:
   claim-until-day: 7
   excluded-worlds: []
   ranks:
-    permission.vip: 1
-    permission.legend: 2
+    vip:
+      permission: tokens.vip
+      amount: 3
+    legend:
+      permission: tokens.legend
+      amount: 5

@@ -21,4 +21,4 @@ permissions:
   friendlycore.admin:
     default: op
   friendlycore.tokens.admin:
-    default: opggle|on|off|status]
+    default: op
