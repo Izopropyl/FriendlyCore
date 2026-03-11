@@ -16,9 +16,24 @@ commands:
   token:
     description: Token command
     usage: /token
+  cic:
+    description: CreativeItemCommand Admin command
+    usage: /cic reload
+
 
 permissions:
   friendlycore.admin:
     default: op
   friendlycore.tokens.admin:
+    default: op
+  friendlycore.cic.bypass.enchantments:
+    description: Bypass enchantment checks
+    default: op
+  friendlycore.cic.bypass.attributes:
+    description: Bypass attribute checks
+    default: op
+  friendlycore.cic.bypass.potions:
+    description: Bypass custom potion checks
+    default: op
+  friendlycore.cic.admin:
     default: op

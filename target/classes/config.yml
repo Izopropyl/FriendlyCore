@@ -8,6 +8,9 @@ features:
     debug: false
   tokens:
     enabled: true
+  creative-item-control:
+    enabled: true
+
 
 tokens:
   claim-until-day: 7
@@ -19,3 +22,36 @@ tokens:
     legend:
       permission: tokens.legend
       amount: 5
+
+
+
+creativeitemcontrol:
+  config:
+    playeralerts: true # Send a message to the player attempting to get the item
+
+    worlds: # Worlds in which the plugin is active
+      - example
+    blacklist: false # If true, above worlds config will act as a blacklist
+
+
+
+  enchantments:
+   # By default, only regular enchantments and levels will be allowed.
+   # Action to take when impossible enchants are found. Options:
+   # LOWER - Set enchants to the highest possible value for that item
+   # REMOVE - Remove enchantments from the item all-together
+   # DELETE - Delete the item
+    enabled: true # Enable enchantment checks?
+    action: LOWER
+    allow-incompatible: false # Whether or not to allow incompatible enchantments (Sharpness with Smite, Infinity with Mending, etc)
+
+  attributes:
+  # By default, no attribute modifying items will be allowed
+  # Action to take when attribute modifiers are found. Options:
+  # REMOVE - Remove the attribute modifiers from the item
+  # DELETE - Delete the item
+    enabled: true
+    action: DELETE
+
+  potions:
+    enabled: true
