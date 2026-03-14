@@ -14,7 +14,10 @@ features:
 
 tokens:
   claim-until-day: 7
-  excluded-worlds: []
+  excluded-worlds:
+    - builds
+    - vip
+    - flat
   ranks:
     vip:
       permission: tokens.vip
@@ -30,7 +33,9 @@ creativeitemcontrol:
     playeralerts: true # Send a message to the player attempting to get the item
 
     worlds: # Worlds in which the plugin is active
-      - example
+      - builds
+      - vip
+      - flat
     blacklist: false # If true, above worlds config will act as a blacklist
     give-cooldown: 5 # Seconds before being able to use /cic give again. 0 = no cooldown
 

@@ -1,6 +1,16 @@
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\command\FriendlyCoreCommand.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\feature\Feature.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\feature\FeatureManager.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\AttributeAction.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\CreativeCommand.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\CreativeFeature.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\CreativeItemCheck.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\CreativeItemListener.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\EnchantAction.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\handlers\CreativeAttributeHandler.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\handlers\CreativeEnchantmentHandler.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\handlers\CreativePotionHandler.java
+D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\creativeitemcontrol\ItemCheckContext.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenCommand.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenDao.java
 D:\Coding\eclipse\FriendlyCore\src\main\java\com\friendlysmp\core\features\tokens\TokenFeature.java
