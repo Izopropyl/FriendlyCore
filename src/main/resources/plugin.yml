@@ -19,6 +19,9 @@ commands:
   cic:
     description: CreativeItemCommand Admin command
     usage: /cic <reload|list|store>
+  commandmaker:
+    description: CommandMaker admin command
+    usage: /commandmaker reload
 
 
 permissions:

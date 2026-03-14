@@ -42,22 +42,53 @@ creativeitemcontrol:
 
 
   enchantments:
-   # By default, only regular enchantments and levels will be allowed.
-   # Action to take when impossible enchants are found. Options:
-   # LOWER - Set enchants to the highest possible value for that item
-   # REMOVE - Remove enchantments from the item all-together
-   # DELETE - Delete the item
+    # By default, only regular enchantments and levels will be allowed.
+    # Action to take when impossible enchants are found. Options:
+    # LOWER - Set enchants to the highest possible value for that item
+    # REMOVE - Remove enchantments from the item all-together
+    # DELETE - Delete the item
     enabled: true # Enable enchantment checks?
     action: LOWER
     allow-incompatible: false # Whether or not to allow incompatible enchantments (Sharpness with Smite, Infinity with Mending, etc)
 
   attributes:
-  # By default, no attribute modifying items will be allowed
-  # Action to take when attribute modifiers are found. Options:
-  # REMOVE - Remove the attribute modifiers from the item
-  # DELETE - Delete the item
+    # By default, no attribute modifying items will be allowed
+    # Action to take when attribute modifiers are found. Options:
+    # REMOVE - Remove the attribute modifiers from the item
+    # DELETE - Delete the item
     enabled: true
     action: DELETE
 
   potions:
     enabled: true
+
+
+commandmaker:
+  enabled-commands:
+    - website
+    - limits
+    - store
+    - map
+    - ticket
+    - support
+
+  commands:
+    website:
+      aliases: []
+      message:
+        - "&bVisit our website at&f: friendlysmp.com"
+    limits:
+      message:
+        - "&bFor a full list of limits visit http://friendlysmp.com/limits"
+    store:
+      message:
+        - "&bVisit our webstore at&f friendlysmp.com/shop"
+    map:
+      message:
+        - "&bView our World Map at&f: friendlysmp.com/map"
+    ticket:
+      message:
+        - "&aReceive support from a staff member at&f friendlysmp.com/tickets"
+    support:
+      message:
+        - "&bReceive support from a staff member at&f: friendlysmp.com/tickets"
