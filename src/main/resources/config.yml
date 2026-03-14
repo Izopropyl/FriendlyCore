@@ -32,6 +32,7 @@ creativeitemcontrol:
     worlds: # Worlds in which the plugin is active
       - example
     blacklist: false # If true, above worlds config will act as a blacklist
+    give-cooldown: 5 # Seconds before being able to use /cic give again. 0 = no cooldown
 
 
 
