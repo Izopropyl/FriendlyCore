@@ -20,7 +20,7 @@ public class CreativePotionHandler implements CreativeItemCheck {
     public void check(ItemCheckContext ctx) {
         if (ctx.isCancelled()) return;
         if (!plugin.potionsEnabled) return;
-        if (ctx.player.hasPermission("cic.bypass.potions")) return;
+        if (ctx.player.hasPermission("friendlycore.cic.bypass.potions")) return;
 
         switch (ctx.item.getType()) {
             case POTION, LINGERING_POTION, SPLASH_POTION -> {}
