@@ -18,7 +18,7 @@ public class CreativeAttributeHandler implements CreativeItemCheck {
     public void check(ItemCheckContext ctx) {
         if (ctx.isCancelled()) return;
         if (!plugin.attributesEnabled) return;
-        if (ctx.player.hasPermission("cic.bypass.attributes")) return;
+        if (ctx.player.hasPermission("friendlycore.cic.bypass.attributes")) return;
 
         boolean attributeIssue = ctx.meta.getAttributeModifiers() != null;
         if (attributeIssue) {

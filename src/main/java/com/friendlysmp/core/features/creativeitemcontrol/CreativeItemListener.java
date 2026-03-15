@@ -32,7 +32,7 @@ public class CreativeItemListener implements Listener {
         boolean inList = plugin.worlds.contains(e.getWhoClicked().getWorld().getName());
         if (plugin.worldsBlacklist == inList) return;
 
-        if (e.getWhoClicked().hasPermission("cic.bypass")) return;
+        if (e.getWhoClicked().hasPermission("friendlycore.cic.bypass")) return;
 
 
         // Setup Item Information
@@ -50,6 +50,8 @@ public class CreativeItemListener implements Listener {
 
 
         if (meta.equals(plugin.getDefaultMeta(item.getType()))) return;
+
+        if (plugin.isExcluded(item)) return;
 
         ItemCheckContext ctx = new ItemCheckContext(p, item, meta, e.getSlot());
 
@@ -80,7 +82,7 @@ public class CreativeItemListener implements Listener {
         boolean inList = plugin.worlds.contains(e.getPlayer().getWorld().getName());
         if (plugin.worldsBlacklist == inList) return;
 
-        if (e.getPlayer().hasPermission("cic.bypass")) return;
+        if (e.getPlayer().hasPermission("friendlycore.cic.bypass")) return;
 
 
         ItemStack item = e.getNewItemStack();
@@ -93,6 +95,8 @@ public class CreativeItemListener implements Listener {
 
 
         if (meta.equals(plugin.getDefaultMeta(item.getType()))) return;
+
+        if (plugin.isExcluded(item)) return;
 
         ItemCheckContext ctx = new ItemCheckContext(p, item, meta, e.getSlot());
 

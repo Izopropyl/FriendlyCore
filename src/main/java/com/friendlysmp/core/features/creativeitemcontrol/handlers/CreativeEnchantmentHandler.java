@@ -25,7 +25,7 @@ public class CreativeEnchantmentHandler implements CreativeItemCheck {
     public void check(ItemCheckContext ctx) {
         if (ctx.isCancelled()) return;
         if (!plugin.enchantmentsEnabled) return;
-        if (ctx.player.hasPermission("cic.bypass.enchantments")) return;
+        if (ctx.player.hasPermission("friendlycore.cic.bypass.enchantments")) return;
 
         Map<Enchantment, Integer> enchants = ctx.meta.getEnchants();
         if (enchants.isEmpty()) return;
